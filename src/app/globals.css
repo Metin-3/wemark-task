@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+/*! RESPPONSIVE CONTAINER  START*/
+.container {
+  width: 1440px;
+  padding: 0 100px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width:1543px) {
+  .container {
+    width: 100%;
+      padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width:1200px) {
+  .container {
+    width: 100%;
+      padding: 0 10px;
+  }
+}
+
+@media only screen and (max-width:992px) {
+  .container {
+    width: 100%;
+      padding: 0 10px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .container {
+    width: 100%;
+    padding: 0 6px;
+  }
+}
+
+@media only screen and (max-width:576px) {
+  .container {
+    width: 100%;
+    padding: 0 6px;
+  }
+}
+
+/*! RESPPONSIVE CONTAINER  END*/
+
+
+
+/*! FONT FAMILY START*/
+@font-face {
+  font-family: 'sf-italic';
+  src: url('/fonts/SFPRODISPLAYBLACKITALIC.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-bold';
+  src: url('/fonts/SFPRODISPLAYBOLD.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-heavy-italic';
+  src: url('/fonts/SFPRODISPLAYHEAVYITALIC.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-light-italic';
+  src: url('/fonts/SFPRODISPLAYLIGHTITALIC.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-light-medium';
+  src: url('/fonts/SFPRODISPLAYMEDIUM.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-regular';
+  src: url('/fonts/SFPRODISPLAYREGULAR.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-semibold-italic';
+  src: url('/fonts/SFPRODISPLAYSEMIBOLDITALIC.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-thin-italic';
+  src: url('/fonts/SFPRODISPLAYTHINITALIC.OTF') format('OTF');
+}
+
+@font-face {
+  font-family: 'sf-ultra-light-italic';
+  src: url('/fonts/SFPRODISPLAYULTRALIGHTITALIC.OTF') format('OTF');
+}
+/*! FONT FAMILY END*/
+
+body{
+  font-family: 'sf-regular', Arial, sans-serif;
+}
