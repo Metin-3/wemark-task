@@ -1,7 +1,6 @@
 import { Product } from "@/types/product";
 import { ShoppingCart, Heart, Scale, MessageCircleMore } from "lucide-react";
 import Image from "next/image";
-// import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (

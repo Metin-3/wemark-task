@@ -1,13 +1,15 @@
 "use client";
 
-import React from "react";
 import Slider from "react-slick";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-// Custom arrow components
-const NextArrow = (props: any) => {
-  const { onClick } = props;
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}
+const NextArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <div
       onClick={onClick}
@@ -18,8 +20,7 @@ const NextArrow = (props: any) => {
   );
 };
 
-const PrevArrow = (props: any) => {
-  const { onClick } = props;
+const PrevArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <div
       onClick={onClick}
@@ -31,10 +32,11 @@ const PrevArrow = (props: any) => {
 };
 
 const HeroCarousel = () => {
+  
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,

@@ -15,13 +15,23 @@ import {
 } from "react-icons/lia";
 import { LuSearch } from "react-icons/lu";
 
-const languages = [
+type Language = {
+  code: string;
+  label: string;
+};
+
+type Option = {
+  label: string;
+  value: string;
+};
+
+const languages: Language[] = [
   { code: "en", label: "En" },
   { code: "az", label: "Az" },
   { code: "tr", label: "Ru" },
 ];
 
-const options = [
+const options: Option[] = [
   { label: "Option 1", value: "one" },
   { label: "Option 2", value: "two" },
   { label: "Option 3", value: "three" },
@@ -29,14 +39,19 @@ const options = [
 export default function Header() {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>(
+    languages[0]
+  );
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     };
@@ -44,7 +59,7 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSelect = (option: { label: string; value: string }) => {
+  const handleSelect = (option: Option) => {
     console.log("Selected option:", option);
   };
 

@@ -24,24 +24,3 @@ export const FeatureCard = ({ iconUrl, title, subtitle }: FeatureCardProps) => {
     </div>
   );
 };
-
-// components/FeatureCard.tsx
-// import Image from "next/image";
-
-// interface FeatureCardProps {
-//   iconUrl: string;
-//   title: string;
-//   subtitle: string;
-// }
-
-// export const FeatureCard = ({ iconUrl, title, subtitle }: FeatureCardProps) => {
-//   return (
-//     <div className="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-sm h-full">
-//       <div className="mb-3">
-//         <Image src={iconUrl} alt={title} width={48} height={48} />
-//       </div>
-//       <h3 className="text-base font-semibold">{title}</h3>
-//       <p className="text-sm text-gray-600">{subtitle}</p>
-//     </div>
-//   );
-// };

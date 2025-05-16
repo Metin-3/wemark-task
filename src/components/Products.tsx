@@ -1,32 +1,6 @@
 import { getProductsByCategory, getCategoryData } from "@/lib/api";
 import ProductCard from "./ProductCard";
 import FilterBar from "./FilterBar";
-
-// export default async function Products({
-//   searchParams,
-// }:  {
-//   searchParams: { category?: string };
-// }) {
-//   const [products, categories] = await Promise.all([
-//     getProductsByCategory(searchParams.category),
-//     getCategoryData(),
-//   ]);
-
-//   return (
-//     <div className="px-4 py-6 max-w-7xl mx-auto">
-//       <FilterBar
-//         selectedCategory={searchParams.category}
-//         categories={categories.map((c) => c.title)}
-//       />
-//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-//         {products.map((product) => (
-//           <ProductCard key={product.id} product={product} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
 export default async function Products({
   searchParams,
 }: {
