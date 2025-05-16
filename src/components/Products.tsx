@@ -1,11 +1,11 @@
 import { getProductsByCategory, getCategoryData } from "@/lib/api";
 import ProductCard from "./ProductCard";
 import FilterBar from "./FilterBar";
-export default async function Products({
-  searchParams,
-}: {
+interface ProductsProps {
   searchParams?: { category?: string };
-}) {
+}
+
+export default async function Products({ searchParams }: ProductsProps) {
   const category = searchParams?.category ?? "";
 
   const [products, categories] = await Promise.all([

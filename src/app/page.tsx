@@ -4,11 +4,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import Products from "@/components/Products";
 import { getFeatures } from "@/lib/getFeatures";
 
-interface PageProps {
-  searchParams?: { category?: string };
-}
-
-export default async function Home({ searchParams }: PageProps) {
+export default async function Home({ searchParams }: any) {
   const features = await getFeatures();
 
   return (
@@ -17,7 +13,14 @@ export default async function Home({ searchParams }: PageProps) {
       <main>
         <HeroCarousel />
         <FeaturesSection features={features} />
-        <Products searchParams={searchParams ?? {}} />
+        <Products
+          searchParams={{
+            category:
+              typeof searchParams?.category === "string"
+                ? searchParams.category
+                : undefined,
+          }}
+        />
       </main>
     </>
   );
