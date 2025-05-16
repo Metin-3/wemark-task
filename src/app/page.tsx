@@ -4,6 +4,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import Products from "@/components/Products";
 import { getFeatures } from "@/lib/getFeatures";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Home({ searchParams }: any) {
   const features = await getFeatures();
 
