@@ -32,7 +32,7 @@ export default async function Products({ searchParams }: ProductsProps) {
           categories={categories.map((c) => c.title)}
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+      <div className="flex flex-wrap items-center justify-center gap-6 mt-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
