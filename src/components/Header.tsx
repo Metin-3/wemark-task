@@ -187,31 +187,37 @@ export default function Header() {
 
         {/* Header bottom */}
         <div className="flex justify-between items-center py-2">
-          <Link href={"/"}>
+          <Link
+            href={"/"}
+            className="relative w-[45px] h-[45px] sm:w-[50px] sm:h-[50px]"
+          >
             <Image
               src="/images/logo.svg"
               alt="BakuElectronics Logo"
-              width={50}
-              height={50}
+              fill
+              className="object-contain"
+              priority
             />
           </Link>
 
           <button
             style={{ fontFamily: "sf-italic" }}
-            className="flex items-center justify-center gap-2 bg-[#333333] text-white w-[130px] h-[50px] rounded-[25px] cursor-pointer mx-2"
+            className="flex items-center justify-center gap-2 bg-[#333333] text-white w-[130px] h-[40px] sm:h-[50px] rounded-[25px] cursor-pointer mx-2 sm:text-[16px] text-[14px] font-bold"
           >
-            <Image
-              src="/icons/category.svg"
-              alt="Category Icon"
-              width={18}
-              height={18}
-            />
+            <span className="w-[16.01px] h-[16.01px] sm:w-[18px] sm:h-[18px]">
+              <Image
+                src="/icons/category.svg"
+                alt="Category Icon"
+                width={18}
+                height={18}
+              />
+            </span>
             Kataloq
           </button>
 
           <form
             action=""
-            className="flex items-center justify-between gap-5 bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] h-[50px] xl:w-[523px] sm:w-[223px] w-[173px] py-[15px] px-[20px] transition-all duration-500 ease-in-out"
+            className="flex items-center justify-between gap-5 bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] h-[40px] sm:h-[50px] xl:w-[523px] sm:w-[223px] max-w-[1973px] py-[15px] px-[20px] transition-all duration-500 ease-in-out"
           >
             <input
               type="text"

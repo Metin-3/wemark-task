@@ -3,16 +3,18 @@ import Header from "@/components/Header";
 import HeroCarousel from "@/components/HeroCarousel";
 import Products from "@/components/Products";
 import { getFeatures } from "@/lib/getFeatures";
+import { getSliders } from "@/lib/getSlider";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Home({ searchParams }: any) {
   const features = await getFeatures();
+   const banners = await getSliders();
 
   return (
     <>
       <Header />
       <main>
-        <HeroCarousel />
+        <HeroCarousel banners={banners}  />
         <FeaturesSection features={features} />
         <Products
           searchParams={{
