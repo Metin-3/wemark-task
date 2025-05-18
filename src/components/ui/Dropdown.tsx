@@ -28,12 +28,12 @@ export default function Dropdown({
   };
 
   return (
-    <div className="relative hidden lg:block text-left">
+    <div className="relative hidden lg:block text-left pl-2">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] h-[50px] lg:w-[253px] py-[15px] px-[20px] cursor-pointer text-[#2B2B2B] dark:text-white transition-all duration-500 ease-in-out"
+        className="flex items-center justify-between bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] min-h-[50px] lg:min-w-[253px] py-[15px] px-[20px] cursor-pointer text-[#2B2B2B] dark:text-white transition-all duration-500 ease-in-out"
       >
-        {selected ? selected.label : label}
+        <span className="text-[16px]">{selected ? selected.label : label}</span>
         <svg
           className="-mr-1 ml-2 h-5 w-5"
           fill="none"
@@ -50,7 +50,7 @@ export default function Dropdown({
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-2  rounded-[12px] shadow-lg bg-[#F5F5F5] dark:bg-[#2B2B2B] ring-opacity-5 w-[253px] px-2 transition-all duration-500 ease-in-out">
+        <div className="absolute !z-50 mt-2  rounded-[12px] shadow-lg bg-[#F5F5F5] dark:bg-[#2B2B2B] ring-opacity-5 w-[253px] px-2 transition-all duration-500 ease-in-out">
           <div className="py-1">
             {options.map((option) => (
               <button

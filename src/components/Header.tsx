@@ -32,12 +32,13 @@ const languages: Language[] = [
 ];
 
 const options: Option[] = [
-  { label: "Option 1", value: "one" },
-  { label: "Option 2", value: "two" },
-  { label: "Option 3", value: "three" },
+  { label: "Sumqayıt şəhəri", value: "one" },
+  { label: "Bakı şəhəri", value: "two" },
+  { label: "Quba rayonu", value: "three" },
 ];
 export default function Header() {
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(
     languages[0]
@@ -63,11 +64,24 @@ export default function Header() {
     console.log("Selected option:", option);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header>
-      <div className="container">
-        {/* Header top */}
-        <div className="flex justify-between items-center bg-[#F5F5F5] dark:bg-[#2B2B2B] md:px-[28px] px-[18px] py-2 rounded-[25px] h-[45px] transition-all duration-500 ease-in-out">
+    <>
+      {/* Header top */}
+      <div className="container relative z-50">
+        <div className="flex justify-between items-center bg-[#F5F5F5] dark:bg-[#2B2B2B] md:px-[28px] px-[18px] py-2 rounded-[25px] h-[45px] transition-all duration-500 ease-in-out mb-2">
           <nav>
             <ul className="hidden lg:flex gap-8 text-[14px]">
               <li>
@@ -176,76 +190,79 @@ export default function Header() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Header bottom */}
-        <div className="flex justify-between items-center py-5 ">
-          <Link
-            href={"/"}
-            className="relative w-[45px] h-[45px] sm:w-[50px] sm:h-[50px]"
-          >
-            <Image
-              src="/images/logo.svg"
-              alt="BakuElectronics Logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </Link>
-
-          <button className="flex items-center justify-center gap-2 bg-[#333333] text-white w-[130px] h-[40px] sm:h-[50px] rounded-[25px] cursor-pointer mx-2 sm:text-[16px] text-[14px] font-bold">
-            <span className="w-[16.01px] h-[16.01px] sm:w-[18px] sm:h-[18px]">
+      {/* Header bottom */}
+      <div
+        className={`sticky top-0 z-40 bg-white dark:bg-[#1A1A1A] transition-all duration-500 ease-in-out ${
+          isScrolled ? "shadow-md" : "shadow-none"
+        }`}
+      >
+        <div className="container">
+          <div className="flex justify-between items-center py-2 ">
+            <Link
+              href={"/"}
+              className="relative min-w-[45px] min-h-[45px] sm:min-w-[50px] sm:min-h-[50px]"
+            >
               <Image
-                src="/icons/category.svg"
-                alt="Category Icon"
-                width={18}
-                height={18}
+                src="/images/logo.svg"
+                alt="BakuElectronics Logo"
+                fill
+                className="object-contain"
+                priority
               />
-            </span>
-            Kataloq
-          </button>
+            </Link>
 
-          <form
-            action=""
-            className="flex items-center justify-between gap-5 bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] h-[40px] sm:h-[50px] xl:w-[523px] sm:w-[223px] max-w-[1973px] py-[15px] px-[20px] transition-all duration-500 ease-in-out"
-          >
-            <input
-              type="text"
-              placeholder="Məhsul axtar......"
-              className="w-full px-0 py-2 text-[14px] border-0 rounded-lg focus:outline-none dark:text-[#fff] dark:border-[#2B2B2B] placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:opacity-80"
+            <button className="flex items-center justify-center gap-2 bg-[#333333] text-white min-w-[120px] min-h-[40px] sm:min-h-[50px] rounded-[25px] cursor-pointer mx-2 sm:text-[16px] text-[14px] font-bold">
+              <span className="relative min-w-[16.01px] min-h-[16.01px] sm:min-w-[18px] sm:min-h-[18px]">
+                <Image src="/icons/category.svg" alt="Category Icon" fill />
+              </span>
+              Kataloq
+            </button>
+
+            <form
+              action=""
+              className="flex items-center justify-between gap-5 bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] h-[40px] sm:h-[50px] xl:w-[523px] sm:w-[473px] w-[473px] py-[15px] px-[20px] transition-all duration-500 ease-in-out"
+            >
+              <input
+                type="text"
+                placeholder="Məhsul axtar......"
+                className="w-full px-0 py-2 text-[14px] border-0 rounded-lg focus:outline-none dark:text-[#fff] dark:border-[#2B2B2B] placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:opacity-80"
+              />
+              <LuSearch size={18} className="dark:text-white text-[#3F3F3F]" />
+            </form>
+
+            <Dropdown
+              options={options}
+              onSelect={handleSelect}
+              label="Bir seçim et"
             />
-            <LuSearch size={18} className="dark:text-white text-[#3F3F3F]" />
-          </form>
 
-          <Dropdown
-            options={options}
-            onSelect={handleSelect}
-            label="Bir seçim et"
-          />
-
-          <ul className="hidden md:flex gap-3">
-            <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
-              <Link href={"/"}>
-                <LiaBalanceScaleSolid className="md:w-[25px] md:h-[25px]" />
-              </Link>
-            </li>
-            <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
-              <Link href={"/"}>
-                <LiaShoppingCartSolid className="md:w-[25px] md:h-[25px]" />
-              </Link>
-            </li>
-            <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
-              <Link href={"/"}>
-                <LiaHeart className="md:w-[25px] md:h-[25px]" />
-              </Link>
-            </li>
-            <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
-              <Link href={"/"}>
-                <LiaUserSolid className="md:w-[25px] md:h-[25px]" />
-              </Link>
-            </li>
-          </ul>
+            <ul className="hidden md:flex gap-3 pl-2">
+              <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
+                <Link href={"/"}>
+                  <LiaBalanceScaleSolid className="md:w-[25px] md:h-[25px]" />
+                </Link>
+              </li>
+              <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
+                <Link href={"/"}>
+                  <LiaShoppingCartSolid className="md:w-[25px] md:h-[25px]" />
+                </Link>
+              </li>
+              <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
+                <Link href={"/"}>
+                  <LiaHeart className="md:w-[25px] md:h-[25px]" />
+                </Link>
+              </li>
+              <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
+                <Link href={"/"}>
+                  <LiaUserSolid className="md:w-[25px] md:h-[25px]" />
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

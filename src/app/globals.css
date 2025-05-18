@@ -33,7 +33,7 @@
 @media only screen and (max-width:768px) {
   .container {
     width: 100%;
-    padding: 0 6px;
+    padding: 0 10px;
   }
 }
 
@@ -125,8 +125,8 @@ font-family: 'SF Pro Display', sans-serif !important;
   overflow: hidden;
   -webkit-line-clamp: 2;
 }
-
-/* @media (min-width: 440px) {
+/* 
+@media (min-width: 640px) {
   .custom-line-clamp {
     white-space: nowrap;
     overflow: hidden;
