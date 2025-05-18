@@ -4,15 +4,15 @@ import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="rounded-[10px] sm:rounded-[24px] sm:w-[288px] w-[160px] h-[243px] sm:h-[380px] mt-10 p-2 sm:p-4 shadow hover:shadow-md transition bg-[#F5F5F5] dark:bg-[#2B2B2B] text-[#2B2B2B] dark:text-white">
-      <div className="flex items-center justify-center relative bottom-[53px] bg-white rounded-[10px] sm:rounded-[20px] sm:w-[248px] sm:h-[218px] w-[138px] h-[120px] overflow-hidden border-[1px] border-[#EDEDED] m-auto">
+    <div className="rounded-[10px] sm:rounded-[24px] md:min-w-[288px] md:min-h-[380px] lg:min-w-[288px] lg:min-h-[380px] min-w-[160px] min-h-[243px]  mt-10 p-2 sm:p-4 shadow hover:shadow-md transition bg-[#F5F5F5] dark:bg-[#2B2B2B] text-[#2B2B2B] dark:text-white">
+      <div className="flex items-center justify-center relative bottom-[53px] bg-white rounded-[10px] sm:rounded-[20px] md:min-w-[248px] md:min-h-[218px] lg:w-[248px] lg:h-[218px] min-w-[138px] min-h-[120px] overflow-hidden border-[1px] border-[#EDEDED] m-auto">
         <div className="flex items-center justify-between w-full absolute top-1 sm:top-2 px-2">
           {product.discount > 0 && (
             <span className="bg-[#EA2427] text-white text-[8px] sm:text-[10px] flex justify-center items-center  rounded-[10px] sm:w-[50px] w-[33px] sm:h-[30px] h-[20px] font-bold">
               -{product.discount}%
             </span>
           )}
-          <button className="w-[25px] sm:w-[42px] h-[20px] sm:h-[32px] rounded-[32px] shadow-xl cursor-pointer flex items-center justify-center text-[#3F3F3F]">
+          <button className="w-[25px] sm:w-[42px] h-[20px] sm:h-[32px] rounded-[32px] shadow-xl cursor-pointer flex items-center justify-center text-[#3F3F3F] hover:bg-[#ffc5c6] hover:text-[#EA2427] transition-all duration-300">
             <Scale className="w-[11px] h-[11px] sm:w-[18px] sm:h-[18px]" />
           </button>
         </div>
@@ -26,7 +26,6 @@ export default function ProductCard({ product }: { product: Product }) {
         />
       </div>
 
-      {/* <div> */}
       <div className="relative bottom-[40px] sm:bottom-[35px]">
         <div className="hidden sm:flex items-center text-sm text-[#3F3F3F] dark:text-white pb-2 text-[10px]">
           <span className="text-[#EA2427]">
@@ -40,13 +39,13 @@ export default function ProductCard({ product }: { product: Product }) {
             {product.reviewCount} Rəy
           </span>
         </div>
-        <p className="custom-line-clamp text-[#3F3F3F] dark:text-white text-[12px] sm:text-[14px]">
+        <p className="custom-line-clamp text-[#3F3F3F] dark:text-white text-[12px] sm:text-[14px] md:h-[45px]">
           {product.name}
         </p>
       </div>
 
-      <div className="flex gap-2 items-end relative bottom-[30px] sm:bottom-[25px]">
-        <div>
+      <div className="flex gap-2 items-end relative bottom-[30px] sm:bottom-[25px] pt-2">
+        <div className="flex flex-col gap-0">
           <span className="text-gray-400 line-through text-[10px] sm:text-[14px]">
             {product.perMonth?.price} ₼
           </span>
@@ -55,7 +54,7 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
         <span className="block border h-8 sm:h-12 border-[#DEDEDE]"></span>
-        <div>
+        <div className="flex flex-col gap-0">
           <span className="text-gray-400 text-[10px] sm:text-[14px]">
             {" "}
             {product.perMonth?.month} ay
@@ -66,16 +65,15 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-between relative bottom-[8px] sm:bottom-[10px]">
-        <button className=" flex items-center justify-center gap-2 sm:gap-7 hover:bg-[#EA2427] text-[#3F3F3F] hover:text-white rounded-[12px] sm:py-2 bg-[#E1E1E1] transition-all duration-500 cursor-pointer dark:bg-[#3F3F3F] dark:text-white w-[96px] h-[35px] sm:w-[195px] sm:h-[45px] text-[12px] sm:text-[14px]">
+      <div className="flex items-center gap-2 sm:gap-0 justify-between relative bottom-[8px] sm:bottom-[5px]">
+        <button className=" flex items-center justify-center gap-2 sm:gap-7 hover:bg-[#EA2427] text-[#3F3F3F] hover:text-white rounded-[12px] sm:py-2 bg-[#E1E1E1] transition-all duration-500 cursor-pointer dark:bg-[#3F3F3F] dark:text-white min-w-[96px] w-full h-[35px] sm:min-w-[195px] sm:h-[45px] text-[12px] sm:text-[14px]">
           <ShoppingCart className="w-[14px] h-[14px] sm:w-[20px] sm:h-[20px]" />
           Səbətə at
         </button>
-        <button className="sm:ml-2 cursor-pointer rounded-[12px] bg-[#E1E1E1] text-[#3F3F3F] hover:text-white hover:bg-[#EA2427] transition-all duration-500 dark:bg-[#3F3F3F] dark:text-white w-[35px] h-[35px] sm:w-[45px] sm:h-[45px] flex justify-center items-center">
+        <button className="sm:ml-2 cursor-pointer rounded-[12px] bg-[#E1E1E1] text-[#3F3F3F] hover:text-white hover:bg-[#EA2427] transition-all duration-500 dark:bg-[#3F3F3F] dark:text-white min-w-[35px] min-h-[35px] sm:min-w-[45px] sm:min-h-[45px] flex justify-center items-center">
           <Heart className="w-[14px] h-[14px] sm:w-[20px] sm:h-[20px]" />
         </button>
       </div>
-      {/* </div> */}
     </div>
   );
 }

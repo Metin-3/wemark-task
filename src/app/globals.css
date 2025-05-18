@@ -4,29 +4,29 @@
 
 /*! RESPPONSIVE CONTAINER  START*/
 .container {
-  width: 1440px;
-  padding: 0 100px;
+  width: 1543px;
+  padding: 0 90px;
   margin: 0 auto;
 }
 
 @media only screen and (max-width:1543px) {
   .container {
     width: 100%;
-      padding: 0 20px;
+    padding: 0 20px;
   }
 }
 
 @media only screen and (max-width:1200px) {
   .container {
     width: 100%;
-      padding: 0 10px;
+    padding: 0 10px;
   }
 }
 
 @media only screen and (max-width:992px) {
   .container {
     width: 100%;
-      padding: 0 10px;
+    padding: 0 10px;
   }
 }
 
@@ -40,7 +40,7 @@
 @media only screen and (max-width:576px) {
   .container {
     width: 100%;
-    padding: 0 6px;
+    padding: 0 10px;
   }
 }
 
@@ -126,7 +126,7 @@ font-family: 'SF Pro Display', sans-serif !important;
   -webkit-line-clamp: 2;
 }
 
-@media (min-width: 640px) {
+/* @media (min-width: 440px) {
   .custom-line-clamp {
     white-space: nowrap;
     overflow: hidden;
@@ -134,7 +134,7 @@ font-family: 'SF Pro Display', sans-serif !important;
     -webkit-line-clamp: unset;
     display: block;
   }
-}
+} */
 /*! CUSTOM LINE CLAMP END*/
 
 

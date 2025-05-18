@@ -10,7 +10,7 @@ interface Props {
 export const FeaturesSection = ({ features }: Props) => {
   return (
     <div className="container">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-[21px] px-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-7 py-[21px]">
         {features.map((item, index) => (
           <FeatureCard
             key={index}

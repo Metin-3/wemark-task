@@ -110,16 +110,16 @@ const NextArrow: React.FC<ArrowProps> = ({ onClick }) => (
     onClick={onClick}
     className="absolute sm:-right-6 -right-2 top-1/2 z-10 -translate-y-1/2 cursor-pointer bg-white w-[30px] h-[30px] md:w-[50px] md:h-[50px] flex justify-center items-center rounded-[8px] md:rounded-[12px] shadow-md"
   >
-    <ArrowRight className="text-red-500" />
+    <ArrowRight className="text-[#EA2427] w-[14.69px] h-[14.69px] md:w-[24.49px] md:h-[24.49px]" />
   </div>
 );
 
 const PrevArrow: React.FC<ArrowProps> = ({ onClick }) => (
   <div
     onClick={onClick}
-    className="absolute sm:-left-5 -left-2 top-1/2 z-10 -translate-y-1/2 cursor-pointer bg-white w-[30px] h-[30px] md:w-[50px] md:h-[50px] flex justify-center items-center rounded-[8px] md:rounded-[12px] shadow-md"
+    className="absolute sm:-left-6 -left-2 top-1/2 z-10 -translate-y-1/2 cursor-pointer bg-white w-[30px] h-[30px] md:w-[50px] md:h-[50px] flex justify-center items-center rounded-[8px] md:rounded-[12px] shadow-md"
   >
-    <ArrowLeft className="text-red-500" />
+    <ArrowLeft className="text-[#EA2427] w-[14.69px] h-[14.69px] md:w-[24.49px] md:h-[24.49px]" />
   </div>
 );
 
@@ -141,7 +141,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ banners }) => {
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 640,
+        breakpoint: 1024,
         settings: {
           variableWidth: false,
         },
@@ -150,8 +150,8 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ banners }) => {
   };
 
   return (
-    <div className="container">
-      <div className="relative rounded-[35px] pt-[21px] px-4">
+    <div className="container overflow-hidden">
+      <div className="relative rounded-[35px] pt-[10px]">
         {/* <Slider {...settings}>
           {banners.map((banner) => (
             <div
@@ -194,14 +194,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ banners }) => {
           {banners.map((banner) => (
             <div
               key={banner.id}
-              className="relative w-full max-w-[95vw] md:max-w-[700px] lg:max-w-[923px] aspect-[923/520] min-h-[200px] mx-auto overflow-hidden rounded-[35px] mr-8"
+              className="relative w-full max-w-[100vw]  lg:max-w-[923px] aspect-[923/520] min-h-[200px] mx-auto overflow-hidden rounded-[35px] lg:mr-3"
             >
               <Image
                 src={banner.image}
                 alt={banner.alt}
                 width={923}
-                height={523}
-                className="object-cover h-5/5 rounded-[35px]"
+                height={520}
+                className="object-cover h-5/5 rounded-[35px] px-2"
                 priority
               />
             </div>
