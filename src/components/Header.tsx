@@ -7,13 +7,22 @@ import { ChevronDown, Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import Dropdown from "./ui/Dropdown";
 import {
+  LiaAngleDoubleRightSolid,
   LiaBalanceScaleSolid,
   LiaBarsSolid,
   LiaHeart,
   LiaShoppingCartSolid,
+  LiaTimesSolid,
   LiaUserSolid,
 } from "react-icons/lia";
 import { LuSearch } from "react-icons/lu";
+import { usePathname } from "next/navigation";
+
+interface NavLink {
+  label: string;
+  href: string;
+  fontWeight?: string;
+}
 
 type Language = {
   code: string;
@@ -36,9 +45,19 @@ const options: Option[] = [
   { label: "Bakı şəhəri", value: "two" },
   { label: "Quba rayonu", value: "three" },
 ];
+
+const navLinks: NavLink[] = [
+  { label: "Kampaniyalar", href: "/", fontWeight: "font-[700]" },
+  { label: "Xidmətlər", href: "/xidmetler", fontWeight: "font-medium" },
+  { label: "Mağazalar", href: "/magazalar", fontWeight: "font-medium" },
+  { label: "Aylıq ödəniş", href: "/odenis", fontWeight: "font-medium" },
+  { label: "Digər", href: "/diger", fontWeight: "font-medium" },
+];
 export default function Header() {
   const { darkMode, toggleDarkMode } = useDarkMode();
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(
     languages[0]
@@ -46,7 +65,6 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -61,7 +79,7 @@ export default function Header() {
   }, []);
 
   const handleSelect = (option: Option) => {
-    console.log("Selected option:", option);
+    console.log(option);
   };
 
   useEffect(() => {
@@ -83,52 +101,95 @@ export default function Header() {
       <div className="container relative z-50">
         <div className="flex justify-between items-center bg-[#F5F5F5] dark:bg-[#2B2B2B] md:px-[28px] px-[18px] py-2 rounded-[25px] h-[45px] transition-all duration-500 ease-in-out mb-2">
           <nav>
+            {/* Desktop menu */}
             <ul className="hidden lg:flex gap-8 text-[14px]">
-              <li>
-                <Link
-                  href="/"
-                  className="custom-hover font-[700] dark:text-[#fff]"
-                >
-                  Kampaniyalar
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="custom-hover font-medium dark:text-[#fff]"
-                >
-                  Xidmətlər
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="custom-hover font-medium dark:text-[#fff]"
-                >
-                  Mağazalar
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="custom-hover font-medium dark:text-[#fff]"
-                >
-                  Aylıq ödəniş
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="custom-hover  font-medium dark:text-[#fff]"
-                >
-                  Digər
-                </Link>
-              </li>
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className={`custom-hover duration-500 transition-all ease-in-out ${
+                        link.fontWeight
+                      } ${
+                        isActive
+                          ? "font-[700] text-[#333333] dark:text-white"
+                          : "text-gray-400"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
-            <LiaBarsSolid
-              size={18}
+            <button
               className="block lg:hidden text-[#3F3F3F] dark:text-[#fff]"
-            />
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              <LiaBarsSolid size={24} />
+            </button>
+
+            {/* Mobile menu */}
+            <div
+              className={`fixed top-0 right-0 h-screen w-full sm:w-2/4 bg-white dark:bg-[#1A1A1A] shadow-lg transform transition-transform duration-300 ease-in-out z-50
+    ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+            >
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="./images/logo.svg"
+                    alt="Baku Electronics Logo"
+                    width={25}
+                    height={25}
+                  />
+                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+                    Baku Electronics
+                  </h2>
+                </div>
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close menu"
+                  className="text-gray-800 dark:text-white hover:text-red-500 transition-colors duration-200"
+                >
+                  <LiaTimesSolid size={24} />
+                </button>
+              </div>
+
+              <ul className="flex flex-col mt-4 gap-3 px-6 text-[16px]">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className={`flex justify-between items-center bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-2xl px-2 py-3 ${
+                          isActive
+                            ? "font-bold text-[#333333] dark:text-white"
+                            : "text-gray-600 dark:text-gray-300"
+                        }`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {link.label}
+                        <LiaAngleDoubleRightSolid
+                          size={16}
+                          className="inline-block text-[#3F3F3F] dark:text-[#fff]"
+                        />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {isOpen && (
+              <div
+                onClick={() => setIsOpen(false)}
+                className="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden opacity-65"
+              />
+            )}
           </nav>
           <div className="flex items-center gap-4">
             <Link
@@ -213,7 +274,7 @@ export default function Header() {
               />
             </Link>
 
-            <button className="flex items-center justify-center gap-2 bg-[#333333] text-white min-w-[120px] min-h-[40px] sm:min-h-[50px] rounded-[25px] cursor-pointer mx-2 sm:text-[16px] text-[14px] font-bold">
+            <button className="flex items-center justify-center gap-2 bg-[#333333] text-white min-w-[120px] min-h-[40px] sm:min-h-[50px] rounded-[25px] cursor-pointer mx-2 sm:text-[16px] text-[14px] font-bold hover:opacity-85 transition-all duration-500 ml-2">
               <span className="relative min-w-[16.01px] min-h-[16.01px] sm:min-w-[18px] sm:min-h-[18px]">
                 <Image src="/icons/category.svg" alt="Category Icon" fill />
               </span>
@@ -221,15 +282,18 @@ export default function Header() {
             </button>
 
             <form
-              action=""
-              className="flex items-center justify-between gap-5 bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] h-[40px] sm:h-[50px] xl:w-[523px] sm:w-[473px] w-[473px] py-[15px] px-[20px] transition-all duration-500 ease-in-out"
+              action="#"
+              className="flex items-center justify-between gap-5 bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[12px] h-[40px] sm:h-[50px] xl:w-[723px] sm:w-[473px] w-[473px] py-[15px] px-[20px] transition-all duration-500 ease-in-out mx-2"
             >
               <input
                 type="text"
                 placeholder="Məhsul axtar......"
-                className="w-full px-0 py-2 text-[14px] border-0 rounded-lg focus:outline-none dark:text-[#fff] dark:border-[#2B2B2B] placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:opacity-80"
+                className="w-full px-0 py-2 text-[14px] border-0 rounded-lg focus:outline-none dark:text-[#fff] dark:border-[#2B2B2B] placeholder:text-[14px] sm:placeholder:text-[16px] placeholder:opacity-80 duration-500 transition-all ease-in-out"
               />
-              <LuSearch size={18} className="dark:text-white text-[#3F3F3F]" />
+              <LuSearch
+                size={18}
+                className="dark:text-white text-[#3F3F3F] duration-500 transition-all ease-in-out"
+              />
             </form>
 
             <Dropdown
@@ -244,10 +308,13 @@ export default function Header() {
                   <LiaBalanceScaleSolid className="md:w-[25px] md:h-[25px]" />
                 </Link>
               </li>
-              <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
+              <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white relative">
                 <Link href={"/"}>
                   <LiaShoppingCartSolid className="md:w-[25px] md:h-[25px]" />
                 </Link>
+                <span className="absolute -top-[4px] -right-2 w-[23.71px h-[16px] bg-[#EA2427] rounded-[18.44px] text-[10.54px] text-white p-[5px] flex justify-center items-center">
+                  4+
+                </span>
               </li>
               <li className="w-[50px] h-[50px] bg-[#F5F5F5] rounded-[12px] flex justify-center items-center border-[1px] hover:border-[#EA2427] border-transparent duration-500 transition-all dark:bg-[#2B2B2B] dark:text-white">
                 <Link href={"/"}>

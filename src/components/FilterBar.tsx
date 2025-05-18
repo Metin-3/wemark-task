@@ -32,11 +32,11 @@ export default function FilterBar({ selectedCategory, categories }: Props) {
   return (
     <div
       style={{ fontFamily: "sf-italic" }}
-      className="flex gap-3 md:gap-7 h-[45px] justify-center items-center overflow-x-auto  bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[25px] px-4"
+      className="flex gap-3 md:gap-7 h-[45px] justify-center items-center overflow-x-auto  bg-[#F5F5F5] dark:bg-[#2B2B2B] rounded-[25px] px-4 duration-500 transition-all ease-in-out"
     >
       <button
         onClick={() => handleClick(undefined)}
-        className={`custom-hover cursor-pointer py-2 text-[11px] sm:text-[14px] ${
+        className={`custom-hover cursor-pointer py-2 text-[11px] sm:text-[14px] duration-500 transition-all ease-in-out ${
           !selectedCategory
             ? " dark:text-white text-[#2B2B2B] font-bold"
             : "dark:text-gray-300 text-[#2B2B2B] font-medium"
@@ -48,7 +48,7 @@ export default function FilterBar({ selectedCategory, categories }: Props) {
         <button
           key={cat}
           onClick={() => handleClick(cat)}
-          className={`custom-hover cursor-pointer py-2 text-[11px] md:text-[14px] whitespace-nowrap ${
+          className={`custom-hover cursor-pointer py-2 text-[11px] md:text-[14px] whitespace-nowrap duration-500 transition-all ease-in-out ${
             selectedCategory === cat
               ? " dark:text-white text-[#2B2B2B] font-bold"
               : " dark:text-gray-300 text-[#2B2B2B] font-medium"

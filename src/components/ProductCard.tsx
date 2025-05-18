@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="rounded-[10px] sm:rounded-[24px] sm:min-w-[288px] sm:min-h-[380px] min-w-[160px] min-h-[243px]  mt-10 p-2 sm:p-4 shadow hover:shadow-md transition bg-[#F5F5F5] dark:bg-[#2B2B2B] text-[#2B2B2B] dark:text-white">
+    <div className="rounded-[10px] sm:rounded-[24px] sm:min-w-[288px] sm:min-h-[380px] min-w-[160px] min-h-[243px]  mt-10 p-2 sm:p-4 shadow hover:shadow-md bg-[#F5F5F5] dark:bg-[#2B2B2B] text-[#2B2B2B] dark:text-white duration-500 transition-all ease-in-out">
       <div className="flex items-center justify-center relative bottom-[53px] bg-white rounded-[10px] sm:rounded-[20px] sm:min-w-[248px] sm:min-h-[218px] min-w-[138px] min-h-[120px] overflow-hidden border-[1px] border-[#EDEDED] m-auto">
         <div className="flex items-center justify-between w-full absolute top-1 sm:top-2 px-2">
           {product.discount > 0 && (
@@ -23,23 +23,24 @@ export default function ProductCard({ product }: { product: Product }) {
           width={200}
           height={200}
           className="w-full sm:h-40 h-21 object-contain"
+          loading="lazy"
         />
       </div>
 
-      <div className="relative bottom-[40px] sm:bottom-[35px]">
+      <div className="relative bottom-[40px] sm:bottom-[35px] ">
         <div className="hidden sm:flex items-center text-sm text-[#3F3F3F] dark:text-white pb-2 text-[10px]">
           <span className="text-[#EA2427]">
             ★{" "}
-            <span className="text-[#3F3F3F] dark:text-white">
+            <span className="text-[#3F3F3F] dark:text-white duration-500 transition-all ease-in-out">
               {product.rate}
             </span>
           </span>
-          <span className="ml-2 flex items-center gap-1 text-[10px]">
+          <span className="ml-2 flex items-center gap-1 text-[10px] duration-500 transition-all ease-in-out">
             <MessageCircleMore size={16} />
             {product.reviewCount} Rəy
           </span>
         </div>
-        <p className="custom-line-clamp text-[#3F3F3F] dark:text-white text-[12px] sm:text-[14px] h-[35px] sm:h-[45px]">
+        <p className="custom-line-clamp text-[#3F3F3F] dark:text-white text-[12px] sm:text-[14px] h-[35px] sm:h-[45px] duration-500 transition-all ease-in-out">
           {product.name}
         </p>
       </div>
@@ -53,7 +54,7 @@ export default function ProductCard({ product }: { product: Product }) {
             {product.price} ₼
           </div>
         </div>
-        <span className="block border h-8 sm:h-12 border-[#DEDEDE]"></span>
+        <span className="block border h-8 sm:h-11 border-[#DEDEDE]"></span>
         <div className="flex flex-col gap-0">
           <span className="text-gray-400 text-[10px] sm:text-[14px]">
             {" "}

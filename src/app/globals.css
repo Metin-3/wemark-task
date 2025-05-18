@@ -125,16 +125,6 @@ font-family: 'SF Pro Display', sans-serif !important;
   overflow: hidden;
   -webkit-line-clamp: 2;
 }
-/* 
-@media (min-width: 640px) {
-  .custom-line-clamp {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: unset;
-    display: block;
-  }
-} */
 /*! CUSTOM LINE CLAMP END*/
 
 

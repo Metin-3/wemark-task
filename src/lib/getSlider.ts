@@ -13,7 +13,7 @@ export async function getSliders(): Promise<SliderItem[]> {
 
   return data.map((item, index) => ({
     ...item,
-    id: index, // Unikal id (əgər backend-də yoxdursa)
-    alt: `Slider ${index + 1}`, // Sadə alt text
+    id: index,
+    alt: `Slider ${index + 1}`,
   }));
 }
