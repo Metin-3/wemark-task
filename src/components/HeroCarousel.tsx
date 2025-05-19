@@ -58,7 +58,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ banners }) => {
 
   return (
     <div className="container overflow-hidden">
-      <div className="relative rounded-[35px] pt-[10px]">
+      <div className="relative rounded-[35px] pt-[17px]">
         <Slider {...settings}>
           {banners.map((banner) => (
             <div
